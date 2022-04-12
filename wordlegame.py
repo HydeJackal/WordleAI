@@ -7,7 +7,9 @@ class WordleGame:
 
     def __init__(self):
         self._ws = ws.WordSet()
-        self._all_words = self._ws.get_dictionary()
+        self._all_words = self._ws.get_solutions().union(self._ws.get_guesses())
+        self._possible_goal = self._ws.get_solutions()
+        self._possible_support = self._ws.get_guesses()
         self._goal = self._ws.get_random_word()
 
     def play_game(self, engine=None):

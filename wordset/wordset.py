@@ -5,20 +5,34 @@ from pathlib import Path
 class WordSet:
 
     def __init__(self):
-        self._dictionary = set()
+        self._solutions = set()
+        self._guesses = set()
 
         script_location = Path(__file__).absolute().parent
-        file_location = script_location / 'possiblewords.txt'
+        file_location = script_location / 'possiblesolutions.txt'
         with open(file_location, 'r') as file:
             lines = file.readlines()
 
         file.close()
 
         for word in lines:
-            self._dictionary.add(word[0:5])
+            self._solutions.add(word[0:5])
 
-    def get_dictionary(self):
-        return self._dictionary
+        script_location = Path(__file__).absolute().parent
+        file_location = script_location / 'possibleguesses.txt'
+        with open(file_location, 'r') as file:
+            lines = file.readlines()
+
+        file.close()
+
+        for word in lines:
+            self._guesses.add(word[0:5])
+
+    def get_solutions(self):
+        return self._solutions
+
+    def get_guesses(self):
+        return self._guesses
 
     def get_random_word(self):
-        return random.choice(tuple(self._dictionary))
+        return random.choice(tuple(self._solutions))
