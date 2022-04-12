@@ -5,9 +5,9 @@ from colorama import init, Fore, Back, Style, deinit, reinit
 
 class WordleGame:
 
-    def __init__(self, possible_words):
+    def __init__(self):
         self._ws = ws.WordSet()
-        self._all_words = possible_words.get_dictionary()
+        self._all_words = self._ws.get_dictionary()
         self._goal = self._ws.get_random_word()
 
     def play_game(self, engine=None):
@@ -42,9 +42,9 @@ class WordleGame:
         for word in guessed:
             for j, letter in enumerate(word):
                 if letter == self._goal[j]:
-                    print(Back.LIGHTGREEN_EX + Fore.LIGHTWHITE_EX + Style.BRIGHT + ' ' + letter + ' ', end=' ')
+                    print(Back.GREEN + Fore.LIGHTWHITE_EX + Style.BRIGHT + ' ' + letter + ' ', end=' ')
                 elif letter in self._goal:
-                    print(Back.LIGHTYELLOW_EX + Fore.LIGHTWHITE_EX + Style.BRIGHT + ' ' + letter + ' ', end=' ')
+                    print(Back.YELLOW + Fore.LIGHTWHITE_EX + Style.BRIGHT + ' ' + letter + ' ', end=' ')
                 else:
                     print(Back.WHITE + Fore.LIGHTWHITE_EX + Style.BRIGHT + ' ' + letter + ' ', end=' ')
 
