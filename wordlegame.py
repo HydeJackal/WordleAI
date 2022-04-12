@@ -37,6 +37,23 @@ class WordleGame:
     def new_random_word(self):
         self._goal = self._ws.get_random_word()
 
+    def get_matches(self, guessed):
+        exact = dict()
+        close = dict()
+        impossible = set()
+        for i, word in enumerate(guessed):
+            exact[i] = list()
+            close[i] = list()
+            for j, letter in enumerate(word):
+                if letter == self._goal[j]:
+                    exact[i].append((j, letter))
+                elif letter in self._goal:
+                    close[i].append((j, letter))
+                else:
+                    impossible.add(letter)
+
+        return exact, close, impossible
+
     def _wordle_format_ui(self, guessed, end=False):
         reinit()
         for word in guessed:
