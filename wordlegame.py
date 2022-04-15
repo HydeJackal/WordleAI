@@ -18,7 +18,8 @@ class WordleGame:
 
         if not engine:
             init(autoreset=True)
-            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + 'Welcome to Wordle!')
+            print(Back.BLACK + Fore.LIGHTWHITE_EX +
+                  Style.BRIGHT + 'Welcome to Wordle!')
             deinit()
 
         while len(guessed_words) < 6 and self._goal not in guessed_words:
@@ -30,7 +31,8 @@ class WordleGame:
 
         if not engine:
             reinit()
-            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT + 'Game End! Word was ' + self._goal + '.')
+            print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT +
+                  'Game End! Word was ' + self._goal + '.')
             deinit()
             self._wordle_format_ui(guessed_words, True)
 
@@ -58,20 +60,29 @@ class WordleGame:
 
     def _wordle_format_ui(self, guessed, end=False):
         reinit()
+
         for word in guessed:
             for j, letter in enumerate(word):
                 if letter == self._goal[j]:
-                    print(Back.GREEN + Fore.LIGHTWHITE_EX + Style.BRIGHT + ' ' + letter + ' ', end=' ')
+                    print(Back.GREEN + Fore.LIGHTWHITE_EX +
+                          Style.BRIGHT + ' ' + letter + ' ', end=' ')
                 elif letter in self._goal:
-                    print(Back.YELLOW + Fore.LIGHTWHITE_EX + Style.BRIGHT + ' ' + letter + ' ', end=' ')
+                    print(Back.YELLOW + Fore.LIGHTWHITE_EX +
+                          Style.BRIGHT + ' ' + letter + ' ', end=' ')
                 else:
-                    print(Back.WHITE + Fore.LIGHTWHITE_EX + Style.BRIGHT + ' ' + letter + ' ', end=' ')
+                    print(Back.WHITE + Fore.LIGHTWHITE_EX +
+                          Style.BRIGHT + ' ' + letter + ' ', end=' ')
+            print()
 
+        for guess in range(6-len(guessed)):
+            for letter in range(5):
+                print(Back.WHITE + Fore.LIGHTWHITE_EX +
+                      Style.BRIGHT + '   ', end=' ')
             print()
 
         if not end:
             print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT +
-                  'You currently have ' + str(len(guessed)) + ' guesses.')
+                  'You currently have ' + str(6 - len(guessed)) + ' guesses.')
             print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT +
                   'Input your next guess: ', end='')
             deinit()
