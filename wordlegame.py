@@ -65,7 +65,7 @@ class WordleGame:
             for j, letter in enumerate(word):
                 if letter == self._goal[j]:
                     print(Back.GREEN + Fore.LIGHTWHITE_EX +
-                          Style.BRIGHT + ' ' + letter + ' ', end=' ')
+                          Style.BRIGHT + ' ' + letter + ' ', end = ' ')
                 elif letter in self._goal:
                     print(Back.YELLOW + Fore.LIGHTWHITE_EX +
                           Style.BRIGHT + ' ' + letter + ' ', end=' ')
