@@ -41,8 +41,10 @@ class WordleGame:
         guesses = list()
         while len(guesses) < 6 and self._goal not in guesses:
             new_guess = algo.next_word()
-            info = self.get_matches(new_guess)
-            algo.add_info(info)
+            exact, close, impossible = self.get_matches([new_guess])
+            exact = exact.values()[0]
+            close = close.values()[0]
+            algo.add_info(exact, close, impossible)
 
         return guesses
 
