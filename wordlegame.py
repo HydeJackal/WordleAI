@@ -22,21 +22,29 @@ class WordleGame:
                   Style.BRIGHT + 'Welcome to Wordle!')
             deinit()
 
-        while len(guessed_words) < 6 and self._goal not in guessed_words:
-            if engine:
-                guessed_words.append(engine.new_word())
-            else:
+            while len(guessed_words) < 6 and self._goal not in guessed_words:
                 self._wordle_format_ui(guessed_words)
                 guessed_words = self._wordle_guessing_ui(guessed_words)
 
-        if not engine:
             reinit()
             print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT +
                   'Game End! Word was ' + self._goal + '.')
             deinit()
             self._wordle_format_ui(guessed_words, True)
 
+        else:
+            guessed_words = self.run_algo(engine)
+
         return self._goal in guessed_words, len(guessed_words)
+
+    def run_algo(self, algo):
+        guesses = list()
+        while len(guesses) < 6 and self._goal not in guesses:
+            new_guess = algo.next_word()
+            info = self.get_matches(new_guess)
+            algo.add_info(info)
+
+        return guesses
 
     def new_random_word(self):
         self._goal = self._ws.get_random_word()
@@ -108,9 +116,10 @@ class WordleGame:
                 print(Back.RED + Fore.LIGHTWHITE_EX + Style.BRIGHT +
                       'World must be a valid word!')
 
-            deinit()
             print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT +
                   'Invalid input. Please input a valid guess:', end='')
+
+            deinit()
             new_guess = input().lower()
 
         guessed.append(new_guess)

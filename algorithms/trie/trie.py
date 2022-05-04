@@ -15,7 +15,7 @@ class LetterNode:
     def add_next(self, letter):
         self.next.add(letter)
 
-    def next_letter(self, letter):
+    def random_next_letter(self, letter):
         if letter in self.next:
             return self.next[letter]
         else:
@@ -60,9 +60,17 @@ class Trie:
 
     def remove_letter_single(self, letter, position):
         del self.order[position][letter]
+        if position != 4:
+            for next_keys in self.order[position + 1].keys():
+                self.order[position + 1][next_keys].prev.remove(letter)
+        if position != 0:
+            for prev_keys in self.order[position - 1].keys():
+                self.order[position + 1][prev_keys].next.remove(letter)
 
-    def keep_letter(self, letter, position):
-        pass
+    def only_letter(self, letter, position):
+        for node_key in self.order[position].keys():
+            if letter != node_key:
+                del self.order[position][node_key]
 
     def clean_trie(self):
         for i, dictionary in enumerate(self.order):
