@@ -1,4 +1,5 @@
 import string
+import random
 import wordset.wordset as ws
 
 
@@ -16,11 +17,11 @@ class LetterNode:
     def add_next(self, letter):
         self.next.add(letter)
 
-    def random_next_letter(self, letter):
-        if letter in self.next:
-            return self.next[letter]
+    def random_next_letter(self):
+        if self.next:
+            return random.choice(list(self.next))
         else:
-            raise Exception('Letter not found in the dictionary.')
+            return False
 
 
 def _set_dict():
@@ -45,12 +46,12 @@ class Trie:
         for word in word_set:
             for i, dictionary in enumerate(self.order):
                 if i == 0:
-                    dictionary[word[i]].add_next(self.word_two[word[i + 1]])
+                    dictionary[word[i]].add_next(word[i + 1])
                 elif i == 4:
-                    dictionary[word[i]].add_prev(self.word_four[word[i - 1]])
+                    dictionary[word[i]].add_prev(word[i - 1])
                 else:
-                    dictionary[word[i]].add_next(self.order[i + 1][word[i + 1]])
-                    dictionary[word[i]].add_prev(self.order[i - 1][word[i - 1]])
+                    dictionary[word[i]].add_next(word[i + 1])
+                    dictionary[word[i]].add_prev(word[i - 1])
 
     def remove_letter_all(self, letter):
         for dictionary in self.order:
@@ -73,11 +74,22 @@ class Trie:
             if letter != node_key:
                 del self.order[position][node_key]
 
-    def clean_trie(self):
-        for i, dictionary in enumerate(self.order):
-            pass
+    def clean_trie(self, word):
+        for i in range(len(word) - 1):
+            print(word)
+            print(self.order[i+1][word[i+1]].next)
+            self.order[i][word[i]].next.remove(word[i+1])
+            self.order[i+1][word[i+1]].next.remove(word[i])
 
+    def get_word(self):
+        word = random.choice(list(self.word_one.keys()))
 
+        for i in range(0, 3):
+            next_letter = self.order[i][word[-1]].random_next_letter()
+            if next_letter:
+                word += next_letter
+
+        return word
 
 
 if __name__ == '__main__':
