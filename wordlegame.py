@@ -1,5 +1,4 @@
 import wordset.wordset as ws
-
 from colorama import init, Fore, Back, Style, deinit, reinit
 
 
@@ -14,6 +13,7 @@ class WordleGame:
 
     def play_game(self, engine=None):
         self.new_random_word()
+        print(self._goal)
         guessed_words = list()
 
         if not engine:
