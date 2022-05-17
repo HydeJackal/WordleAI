@@ -28,6 +28,9 @@ class WordSet:
         for word in lines:
             self._guesses.add(word[0:5])
 
+    def __len__(self):
+        return len(self._solutions)
+
     def get_solutions(self):
         return self._solutions
 

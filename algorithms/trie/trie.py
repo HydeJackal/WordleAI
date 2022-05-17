@@ -9,7 +9,6 @@ class LetterNode:
         self.letter = letter
         self.prev = set()
         self.next = set()
-        print("jdfkdjf")
 
     def add_prev(self, letter):
         self.prev.add(letter)

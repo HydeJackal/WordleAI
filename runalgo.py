@@ -1,10 +1,12 @@
 import algorithms.trie.trieengine as te
+import algorithms.randomized.randomizedengine as re
 import wordlegame as wg
 import time
 
 
 def run_all(iterate):
-    engines = {'Trie': te.TrieEngine()}
+    engines = {'Randomized': re.Randomized()
+    }
 
     for engine in engines.keys():
         print('Test for ' + str(engine) + ' :')
