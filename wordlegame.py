@@ -38,7 +38,7 @@ class WordleGame:
 
     def run_algo(self, algo):
         guesses = list()
-        while self._goal not in guesses and len(guesses) < 6:    ## need length of guesses to be less than six
+        while self._goal not in guesses and len(guesses) < 6:  ## need length of guesses to be less than six
             new_guess = algo.next_word(self._goal)
             guesses.append(new_guess)
             exact, close, impossible = self.get_matches([new_guess])
@@ -46,7 +46,6 @@ class WordleGame:
             close = close[0]
             algo.add_info(exact, close, impossible)
 
-        
         return guesses
 
     def new_random_word(self):
@@ -76,7 +75,7 @@ class WordleGame:
             for j, letter in enumerate(word):
                 if letter == self._goal[j]:
                     print(Back.GREEN + Fore.LIGHTWHITE_EX +
-                          Style.BRIGHT + ' ' + letter + ' ', end = ' ')
+                          Style.BRIGHT + ' ' + letter + ' ', end=' ')
                 elif letter in self._goal:
                     print(Back.YELLOW + Fore.LIGHTWHITE_EX +
                           Style.BRIGHT + ' ' + letter + ' ', end=' ')
@@ -85,7 +84,7 @@ class WordleGame:
                           Style.BRIGHT + ' ' + letter + ' ', end=' ')
             print()
 
-        for guess in range(6-len(guessed)):
+        for guess in range(6 - len(guessed)):
             for letter in range(5):
                 print(Back.WHITE + Fore.LIGHTWHITE_EX +
                       Style.BRIGHT + '   ', end=' ')
