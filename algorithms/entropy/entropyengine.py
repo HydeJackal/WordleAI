@@ -9,7 +9,7 @@ class Entropy:
         self.wordset = list(ws.WordSet().get_solutions())
 
         script_location = Path(__file__).absolute().parent
-        file_location = script_location / 'frequency.json'
+        file_location = script_location / 'ent_data.json'
         with open(file_location, 'r') as json_file:
             json_load = json.load(json_file)
 
@@ -18,6 +18,9 @@ class Entropy:
         self.yellow_letter = set()
         self.green_letter = set()
         self.black_letter = set()
+
+    def get_entropy(freq):
+        return freq
 
     def next_word(self):
         if len(self.wordset) == 0:
