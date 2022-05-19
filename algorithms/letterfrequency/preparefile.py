@@ -27,9 +27,9 @@ if __name__ == "__main__":
         reused = set()
         for letter in w:
             if letter not in reused:
-                power += frequency[letter] * 1
+                power += frequency[letter] * 1.5
             else:
-                power += frequency[letter] * 0.10
+                power += frequency[letter] * 0.3
             reused.add(letter)
         df_new = pd.DataFrame([[w, power]], columns=['Word', 'Power'])
         df = pd.concat([df, df_new], axis=0, ignore_index=True)
