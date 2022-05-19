@@ -1,12 +1,13 @@
 import algorithms.trie.trieengine as te
 import algorithms.randomized.randomizedengine as re
+import algorithms.entropy.entropyengine as en
 import wordlegame as wg
 import time
 
 
 def run_all(iterate):
-    engines = {'Randomized': re.Randomized()
-    }
+    engines = {'Entropy': en.Entropy()
+               }
 
     for engine in engines.keys():
         print('Test for ' + str(engine) + ' :')
@@ -17,6 +18,7 @@ def run_all(iterate):
         guessCount = list()
         start = time.time()
         for _ in range(iterate):
+            state = wg.WordleGame()
             algo = engines[engine]
             result = state.play_game(algo)
             if result[0]:
@@ -42,5 +44,3 @@ def run_all(iterate):
         print('6: ' + str(guessCount.count(6)))
         print()
     print('End of tests.')
-
-
