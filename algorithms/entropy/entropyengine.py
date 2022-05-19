@@ -19,7 +19,7 @@ class Entropy:
         self.green_letter = set()
         self.black_letter = set()
 
-    def next_word(self):
+    def next_word(self, goal):
 
         for letter in self.black_letter:
             self.wordset = [
@@ -38,8 +38,6 @@ class Entropy:
 
 
         guess = self.wordset[0]
-        print("guess is " + guess)
-        print(self.frequency)
         self.wordset.remove(guess)
         return guess
 

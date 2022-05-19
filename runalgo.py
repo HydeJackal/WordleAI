@@ -1,4 +1,4 @@
-import algorithms.trie.trieengine as te
+import algorithms.letterfrequency.letterfrequency as lf
 import algorithms.randomized.randomizedengine as re
 import algorithms.entropy.entropyengine as en
 import algorithms.minimax.minimaxengine as mm
@@ -7,7 +7,10 @@ import time
 
 
 def run_all(iterate):
-    engines = {'Random': re.Randomized, 'Minimax': mm.Minimax
+    engines = {'Randomized': re.Randomized,
+                'Minimax': mm.Minimax,
+               'Entropy': en.Entropy, 
+               'Letter Frequency': lf.LetterFrequency,
                }
 
     print('Start of Tests')
