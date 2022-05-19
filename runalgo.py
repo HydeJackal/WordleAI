@@ -1,12 +1,13 @@
 import algorithms.trie.trieengine as te
 import algorithms.randomized.randomizedengine as re
 import algorithms.entropy.entropyengine as en
+import algorithms.minimax.minimaxengine as mm
 import wordlegame as wg
 import time
 
 
 def run_all(iterate):
-    engines = {'Random': re.Randomized
+    engines = {'Random': re.Randomized, 'Minimax': mm.Minimax
                }
 
     print('Start of Tests')

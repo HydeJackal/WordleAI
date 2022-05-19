@@ -39,7 +39,7 @@ class WordleGame:
     def run_algo(self, algo):
         guesses = list()
         while self._goal not in guesses and len(guesses) < 6:  ## need length of guesses to be less than six
-            new_guess = algo.next_word()
+            new_guess = algo.next_word(self._goal)
             guesses.append(new_guess)
             exact, close, impossible = self.get_matches([new_guess])
             exact = exact[0]

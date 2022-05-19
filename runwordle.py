@@ -7,7 +7,7 @@ from colorama import init, Fore, Back, Style
 if __name__ == '__main__':
     run_algo = ['algo', 'Algo', 'algorithm', 'Algorithm', 'run_algo']
     if any(special in run_algo for special in sys.argv):
-        runalgo.run_all(1000)
+        runalgo.run_all(500)
     else:
         game = wordlegame.WordleGame()
         end_state, _ = game.play_game()
