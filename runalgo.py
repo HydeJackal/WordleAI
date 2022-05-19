@@ -7,10 +7,10 @@ import time
 
 
 def run_all(iterate):
-    engines = {'Randomized': re.Randomized,
-                'Minimax': mm.Minimax,
+    engines = {#'Randomized': re.Randomized,
+                #'Minimax': mm.Minimax,
                'Entropy': en.Entropy, 
-               'Letter Frequency': lf.LetterFrequency,
+               #'Letter Frequency': lf.LetterFrequency,
                }
 
     print('Start of Tests')
