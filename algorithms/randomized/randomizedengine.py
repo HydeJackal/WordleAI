@@ -11,7 +11,7 @@ class Randomized:
     self.guesses = 0
 
 
-  def next_word(self, goal):
+  def next_word(self):
     
     for letter in self.black_letter:
       self.wordset = [word for word in self.wordset if not letter in word]
@@ -25,13 +25,6 @@ class Randomized:
     guess = random.choice(self.wordset)
     self.guesses += 1
     self.wordset.remove(guess)
-
-    if len(self.wordset) == 0 or guess == goal:
-      self.wordset = list(ws.WordSet().get_solutions())
-      self.yellow_letter.clear()
-      self.green_letter.clear()
-      self.black_letter.clear()
-      self.guesses = 0
 
     return guess
 
