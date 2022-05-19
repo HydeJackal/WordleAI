@@ -13,7 +13,6 @@ class WordleGame:
 
     def play_game(self, engine=None):
         self.new_random_word()
-        print(self._goal + " is goal word")
         guessed_words = list()
 
         if not engine:
@@ -39,9 +38,8 @@ class WordleGame:
 
     def run_algo(self, algo):
         guesses = list()
-        while self._goal not in guesses:    ## need length of guesses to be less than six
-            new_guess = algo.next_word()
-            print("guess is " + new_guess)
+        while self._goal not in guesses and len(guesses) < 6:    ## need length of guesses to be less than six
+            new_guess = algo.next_word(self._goal)
             guesses.append(new_guess)
             exact, close, impossible = self.get_matches([new_guess])
             exact = exact[0]
@@ -119,7 +117,7 @@ class WordleGame:
                       'Word cannot have been guessed already!')
             if new_guess not in self._all_words:
                 print(Back.RED + Fore.LIGHTWHITE_EX + Style.BRIGHT +
-                      'World must be a valid word!')
+                      'Word must be a valid word!')
 
             print(Back.BLACK + Fore.LIGHTWHITE_EX + Style.BRIGHT +
                   'Invalid input. Please input a valid guess:', end='')
