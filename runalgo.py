@@ -1,4 +1,4 @@
-import algorithms.trie.trieengine as te
+import algorithms.letterfrequency.letterfrequency as lf
 import algorithms.randomized.randomizedengine as re
 import algorithms.entropy.entropyengine as en
 import wordlegame as wg
@@ -7,7 +7,8 @@ import time
 
 def run_all(iterate):
     engines = {'Randomized': re.Randomized,
-               'Entropy': en.Entropy,
+               'Letter Frequency': lf.LetterFrequency,
+               'Entropy': en.Entropy
                }
 
     print('Start of Tests')
