@@ -6,7 +6,7 @@ import time
 
 
 def run_all(iterate):
-    engines = {'Entropy': en.Entropy()
+    engines = {'Random': re.Randomized
                }
 
     for engine in engines.keys():
